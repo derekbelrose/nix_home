@@ -16,6 +16,7 @@
 	home-manager,
 	...
   } @ inputs: {
+
 	homeConfigurations.derek = home-manager.lib.homeManagerConfiguration {
           system = "x86_64-linux";
           username = "derek"; 

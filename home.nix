@@ -28,14 +28,16 @@
   	];
   };
 
-  home.packages = [
-    pkgs.htop
-    pkgs.slack
-    pkgs.vim
-    pkgs.firefox
-    pkgs.lm_sensors
-    pkgs.spotify
-    pkgs.tmux
+  home.packages = with pkgs; [
+    htop
+    slack
+    vim
+    firefox
+    lm_sensors
+    spotify
+    tmux
+    bitwarden
+    bitwarden-cli
   ];
 
 
