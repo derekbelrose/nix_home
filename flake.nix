@@ -10,21 +10,24 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      defaultPackage.${system} = home-manager.defaultPackage.${system};
-      homeConfigurations.derek = home-manager.lib.homeManagerConfiguration {
-	pkgs = import nixpkgs {
-		inherit system;
-		config.allowUnfree = true;
-	};
-	modules = [
-	  ./home.nix
-	];
-      };
-    };
-}
+  outputs = {
+	self,
+	nixpkgs,
+	home-manager,
+	...
+  } @ inputs: {
+	homeConfigurations.derek = home-manager.lib.homeManagerConfiguration {
+          system = "x86_64-linux";
+          username = "derek"; 
+          homeDirectory = "/home/derek";
+	  configuration = ./home.nix;
+        };
+	devShells.x86_64-linux.default = let
+		home-manager-bin = home-manager.packages.x86_64-linux.default;
 
+	in
+		nixpkgs.legacyPackages.x86_64-linux.mkShell {
+			packages = [ home-manager-bin ];
+		};
+  };
+}

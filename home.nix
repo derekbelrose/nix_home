@@ -17,7 +17,7 @@
   home.stateVersion = "23.05";
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  programs.home-manager.enable = false;
 
 
   programs.emacs = {
@@ -29,11 +29,12 @@
   };
 
   home.packages = [
-	  pkgs.htop
-	  pkgs.slack
-	  pkgs.vim
-	  pkgs.firefox
-	  pkgs.lm_sensors
+    pkgs.htop
+    pkgs.slack
+    pkgs.vim
+    pkgs.firefox
+    pkgs.lm_sensors
+    pkgs.spotify
     pkgs.tmux
   ];
 
